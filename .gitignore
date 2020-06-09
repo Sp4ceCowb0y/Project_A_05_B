@@ -1,0 +1,11 @@
+key*
+**/terraform.tfvars
+**/terraform.tfstate
+**/terraform.tfstate.backup
+**/.terraform
+**/mykey*
+**/key*
+**/ebs_volume_id.tf
+**/instance_vars.tf
+**/backend.txt
+**/ebs/.terraform/*
