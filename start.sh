@@ -2,6 +2,8 @@
 
 WORKDIR=$PWD
 
+cat "$WORKDIR/infra/backend.txt" >> "$WORKDIR/infra/backend_backup.txt"
+
 while true; do
   PS3='What do you want to do: '
   choices=("Create infra" "Create ebs volume" "Create infra and ebs volume and attach volume to infra" 
@@ -66,6 +68,7 @@ while true; do
             cat "$WORKDIR/infra/backend.txt" > "$WORKDIR/infra/backend.tf"
 
             cd "$WORKDIR/ebs_attach"
+            terraform init
             terraform destroy -auto-approve
             terraform plan -out planebsattach.terraform
             terraform apply planebsattach.terraform
@@ -77,6 +80,7 @@ while true; do
             echo "$choice"
 
             cd "$WORKDIR/ebs_attach"
+            terraform init
             terraform destroy -auto-approve
             terraform plan -out planebsattach.terraform
             terraform apply planebsattach.terraform
@@ -88,6 +92,7 @@ while true; do
             echo "$choice"
 
             cd "$WORKDIR/infra"
+            terraform init
             terraform destroy -auto-approve
             echo
             break
@@ -97,6 +102,7 @@ while true; do
             echo "$choice"
 
             cd "$WORKDIR/ebs"
+            terraform init
             terraform destroy -auto-approve
             echo
             break
@@ -106,9 +112,11 @@ while true; do
             echo "$choice"
 
             cd "$WORKDIR/infra"
+            terraform init
             terraform destroy -auto-approve
 
             cd "$WORKDIR/ebs"
+            terraform init
             terraform destroy -auto-approve
             echo
             break
@@ -118,6 +126,7 @@ while true; do
             echo "$choice"
 
             cd "$WORKDIR/ebs_attach"
+            terraform init
             terraform destroy -auto-approve
             terraform plan -out planebsattach.terraform
             terraform apply planebsattach.terraform
