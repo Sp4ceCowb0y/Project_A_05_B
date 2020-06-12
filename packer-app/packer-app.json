@@ -22,7 +22,7 @@
   {
     "type": "shell",
     "scripts": [  "scripts/deploy.sh"   ],
-    "execute_command": "{{ .Vars }} sudo -E sh '{{ .Path }}'",
+    "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
     "pause_before": "10s"
   }]
 }

@@ -1,6 +1,8 @@
 #!/bin/bash
-apt-get update
-apt-get install -y nginx nodejs npm
+apt-get update && \
+apt-get install -y nginx && \
+apt-get install -y nodejs && \
+apt-get install -y npm
 
 groupadd node-app
 useradd -d /app -s /bin/false -g node-app node-app

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 WORKDIR=$PWD
+AWS_REGION="eu-central-1"
 
 cat "$WORKDIR/infra/backend.txt" >> "$WORKDIR/infra/backend_backup.txt"
 
@@ -54,6 +55,12 @@ while true; do
             terraform destroy -auto-approve
             terraform plan -out planebsattach.terraform
             terraform apply planebsattach.terraform
+
+            S3_BUCKET=`aws s3 ls --region $AWS_REGION |grep terraform-state |tail -n1 |cut -d ' ' -f3`
+            PUBLIC_IP=`aws s3 cp s3://${S3_BUCKET}/terraform.tfstate --region $AWS_REGION - | grep '"public_ip":' | head -n1 | cut -d "\"" -f 4`
+
+            echo public ip: $PUBLIC_IP
+
             echo
 	        break
         ;;
@@ -72,6 +79,11 @@ while true; do
             terraform destroy -auto-approve
             terraform plan -out planebsattach.terraform
             terraform apply planebsattach.terraform
+            S3_BUCKET=`aws s3 ls --region $AWS_REGION |grep terraform-state |tail -n1 |cut -d ' ' -f3`
+            PUBLIC_IP=`aws s3 cp s3://${S3_BUCKET}/terraform.tfstate --region $AWS_REGION - | grep '"public_ip":' | head -n1 | cut -d "\"" -f 4`
+
+            echo public ip: $PUBLIC_IP
+
             echo
             break
         ;;
@@ -84,6 +96,12 @@ while true; do
             terraform destroy -auto-approve
             terraform plan -out planebsattach.terraform
             terraform apply planebsattach.terraform
+
+            S3_BUCKET=`aws s3 ls --region $AWS_REGION |grep terraform-state |tail -n1 |cut -d ' ' -f3`
+            PUBLIC_IP=`aws s3 cp s3://${S3_BUCKET}/terraform.tfstate --region $AWS_REGION - | grep '"public_ip":' | head -n1 | cut -d "\"" -f 4`
+            
+            echo public ip: $PUBLIC_IP       
+
             echo
             break
         ;;
@@ -118,18 +136,6 @@ while true; do
             cd "$WORKDIR/ebs"
             terraform init
             terraform destroy -auto-approve
-            echo
-            break
-        ;;
-
-        "Reattach ebs volume")
-            echo "$choice"
-
-            cd "$WORKDIR/ebs_attach"
-            terraform init
-            terraform destroy -auto-approve
-            terraform plan -out planebsattach.terraform
-            terraform apply planebsattach.terraform
             echo
             break
         ;;
