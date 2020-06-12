@@ -29,12 +29,15 @@ mount /var/lib/jenkins
 # jenkins repository
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
 echo "deb http://pkg.jenkins.io/debian-stable binary/" >> /etc/apt/sources.list
-apt-get update
+apt-get update && \
 
 # install dependencies
-apt-get install -y python3 openjdk-11-jdk awscli
+apt-get install -y python3 && \
+apt-get install -y openjdk-11-jdk && \
+apt-get install -y awscli && \
 # install jenkins
-apt-get install -y jenkins=${JENKINS_VERSION} unzip
+apt-get install -y jenkins=${JENKINS_VERSION} && \
+apt-get install -y unzip
 
 # install terraform
 cd /usr/local/bin
