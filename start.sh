@@ -3,7 +3,7 @@
 WORKDIR=$PWD
 AWS_REGION="eu-central-1"
 
-cat "$WORKDIR/infra/backend.txt" >> "$WORKDIR/infra/backend_backup.txt"
+cat "$WORKDIR/infra/backend.tf" >> "$WORKDIR/infra/backend_backup.txt"
 
 while true; do
   PS3='What do you want to do: '
