@@ -2,7 +2,10 @@
 apt-get update && \
 apt-get install -y nginx && \
 apt-get install -y nodejs && \
-apt-get install -y npm
+apt-get install -y npm && \
+apt-get install -y virtualbox && \
+apt-get install -y docker.io
+
 
 groupadd node-app
 useradd -d /app -s /bin/false -g node-app node-app
