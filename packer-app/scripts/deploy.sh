@@ -6,6 +6,11 @@ apt-get install -y npm && \
 apt-get install -y virtualbox && \
 apt-get install -y docker.io
 
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+
+chmod +x ./kubectl
+mv ./kubectl /usr/local/bin/kubectl
+
 
 groupadd node-app
 useradd -d /app -s /bin/false -g node-app node-app
