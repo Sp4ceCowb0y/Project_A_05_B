@@ -41,16 +41,21 @@ resource "aws_security_group" "app-securitygroup" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["79.155.127.21/32"]
   }
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["79.155.127.21/32"]
+  }
+    ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["79.155.127.21/32"]
   }
   tags = {
     Name = "app-securitygroup"
   }
 }
-
