@@ -1,1 +1,1 @@
-    ssh -i key ubuntu@3.121.234.137
+    ssh -i key ubuntu@18.194.244.69
