@@ -1,10 +1,10 @@
 #!/bin/bash
 apt-get update && \
-apt-get install -y nginx &> /tmp/nginx.txt && \
-apt-get install -y nodejs &> /tmp/nodejs.txt && \
-apt-get install -y npm &> /tmp/npm.txt && \
-apt-get install -y docker.io &> /tmp/docker.txt && \
-apt-get install -y virtualbox &> /tmp/virtualbox.txt
+apt-get install -y nginx && \
+apt-get install -y nodejs && \
+apt-get install -y npm && \
+apt-get install -y docker.io && \
+apt-get install -y virtualbox
 
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl 
 
