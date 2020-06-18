@@ -24,6 +24,6 @@
     "scripts": [  "scripts/deploy.sh"   ],
     "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
     "pause_before": "20s",
-    "max_retries": "5"
+    "max_retries": 5
   }]
 }
