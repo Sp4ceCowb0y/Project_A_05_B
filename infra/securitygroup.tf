@@ -1,7 +1,7 @@
 resource "aws_security_group" "jenkins-securitygroup" {
   vpc_id      = aws_vpc.main.id
   name        = "jenkins-securitygroup"
-  description = "security group that allows ssh to me and all egress traffic"
+  description = "security group that allows 22, 8080 & 8081 from me and all egress traffic"
   egress {
     from_port   = 0
     to_port     = 0
@@ -21,6 +21,18 @@ resource "aws_security_group" "jenkins-securitygroup" {
     protocol    = "tcp"
     cidr_blocks = ["79.155.127.21/32"]
   }
+  ingress {
+    from_port   = 8081
+    to_port     = 8081
+    protocol    = "tcp"
+    cidr_blocks = ["79.155.127.21/32"]
+  }
+  ingress {
+    from_port   = 3000
+    to_port     = 3000
+    protocol    = "tcp"
+    cidr_blocks = ["79.155.127.21/32"]
+  }
   tags = {
     Name = "jenkins-securitygroup"
   }
@@ -29,7 +41,7 @@ resource "aws_security_group" "jenkins-securitygroup" {
 resource "aws_security_group" "app-securitygroup" {
   vpc_id      = aws_vpc.main.id
   name        = "app-securitygroup"
-  description = "security group that allows ssh and all egress traffic"
+  description = "security group that allows 22, 80, 8080 and all egress traffic"
   egress {
     from_port   = 0
     to_port     = 0
